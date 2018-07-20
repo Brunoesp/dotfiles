@@ -19,11 +19,11 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 # nm-applet
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # pywal
 
-exec --no-startup-id wal -q -i ~/Pictures/deer_lake.jpg
+exec --no-startup-id wal -q -i ~/Pictures/dreamer.jpg
 
 # Set colors from Xresources
 # Change 'color7' and 'color2' to whatever colors you want i3 to use 
@@ -34,7 +34,7 @@ set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  #74ed80       $bg
+client.focused          $bg     $bg     $fg  '#74ed80'       $bg
 #client.focused_inactive $bg     $bg     $fg  $bg       $bg
 #client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
@@ -47,8 +47,8 @@ client.background       $bg
 
 #
 
-# compton
-exec --no-startup-id compton --xrender-sync-fence --config ~/.config/compton.conf
+# compton  --shadow-exclude 'focused'
+exec --no-startup-id compton --inactive-dim 0.2 --xrender-sync-fence --config ~/.config/compton.conf
 
 # i3 config file (v4)
 #
@@ -264,8 +264,8 @@ bindsym Shift+Mod1+e exec dolphin
 
 bindsym Ctrl+Shift+r exec systemctl reboot
 bindsym Ctrl+Shift+t exec systemctl poweroff
-bindsym Ctrl+Shift+0 exec --no-startup-id i3lock -i ~/Pictures/arch_logo.png && sleep 0.5 && systemctl suspend
-bindsym Ctrl+Shift+l exec --no-startup-id i3lock -i ~/Pictures/arch_logo.png
+bindsym Ctrl+Shift+0 exec --no-startup-id betterlockscreen -s dim
+bindsym Ctrl+Shift+l exec --no-startup-id betterlockscreen -l dim
 # print
 
 bindsym Print exec --no-startup-id spectacle -fbn
