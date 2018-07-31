@@ -4,26 +4,34 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3-gaps 
 gaps inner 15
-gaps outer 5
+gaps outer 0
 
 for_window [class="^.*"] border pixel 0
+
+bindsym Ctrl+Mod1+g gaps inner current set 0; exec --no-startup-id polybar-msg cmd hide
+bindsym Ctrl+Shift+g gaps inner current set 15; exec --no-startup-id polybar-msg cmd show
+# mpd
+
+exec --no-startup-id mpd
 
 # polybar
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+bindsym Ctrl+Mod1+h exec --no-startup-id polybar-msg cmd toggle
 
 # polkit
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
-# nm-applet
-#exec --no-startup-id nm-applet
+# tray programs 
+
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # pywal
 
-exec --no-startup-id wal -q -i ~/Pictures/dreamer.jpg
+exec --no-startup-id wal -q -i ~/Pictures/fft.jpg
 
 # Set colors from Xresources
 # Change 'color7' and 'color2' to whatever colors you want i3 to use 
@@ -47,8 +55,9 @@ client.background       $bg
 
 #
 
-# compton  --shadow-exclude 'focused'
-exec --no-startup-id compton --inactive-dim 0.2 --xrender-sync-fence --config ~/.config/compton.conf
+# compton
+exec --no-startup-id compton -b --inactive-dim 0.2 --backend=glx --xrender-sync --xrender-sync-fence --config ~/.config/compton.conf
+#exec --no-startup-id compton --inactive-dim 0.2 --xrender-sync --xrender-sync-fence --config ~/.config/compton.conf
 
 # i3 config file (v4)
 #
@@ -81,7 +90,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun -show-icons
 bindsym Mod1+Tab exec rofi -show window
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -221,6 +230,7 @@ bindsym $mod+r mode "resize"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -set 1%
 
 # media
 #	xf86
@@ -236,23 +246,17 @@ bindsym Ctrl+Shift+e exec --no-startup-id "mpc stop"
 
 # audio
 #	xf86
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5%; if [ $(pactl list sinks | grep Volume | tail -n 2 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1 ) -gt 100 ]; then pactl set-sink-volume 0 100%; fi"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
 #	shortcut
-bindsym Ctrl+Shift+q exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym Ctrl+Shift+w exec --no-startup-id "pactl set-sink-volume 0 +5%; if [ $(pactl list sinks | grep Volume | tail -n 2 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1 ) -gt 100 ]; then pactl set-sink-volume 0 100%; fi"
+bindsym Ctrl+Shift+w exec --no-startup-id pulseaudio-ctl up
+bindsym Ctrl+Shift+q exec --no-startup-id pulseaudio-ctl down
 
 # bluetooth
 #	turn on/connect
 bindsym Ctrl+Shift+b exec --no-startup-id "bluetoothctl power on && bluetoothctl connect F4:4E:FD:DC:A7:5B"
 bindsym Ctrl+Shift+o exec --no-startup-id "bluetoothctl disconnect F4:4E:FD:DC:A7:5B && bluetoothctl power off"
-
-#	mediactl
-bindsym Ctrl+Shift+a exec --no-startup-id pactl set-sink-volume bluez_sink.F4_4E_FD_DC_A7_5B.a2dp_sink -5%
-bindsym Ctrl+Shift+s exec --no-startup-id "pactl set-sink-volume bluez_sink.F4_4E_FD_DC_A7_5B.a2dp_sink +5%; if [ $(pactl list sinks | grep Volume | tail -n 2 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1 ) -gt 100 ]; then pactl set-sink-volume bluez_sink.F4_4E_FD_DC_A7_5B.a2dp_sink 100%; fi"
-bindsym Ctrl+Shift+d exec --no-startup-id pactl set-sink-mute bluez_sink.F4_4E_FD_DC_A7_5B.a2dp_sink toggle
 
 # app shortcut
 
@@ -260,13 +264,32 @@ bindsym Mod1+w exec firefox
 bindsym Mod1+e exec urxvt -e ranger
 bindsym Mod1+m exec urxvt -e ncmpcpp
 bindsym Shift+Mod1+e exec dolphin
+
 # systemctl
 
 bindsym Ctrl+Shift+r exec systemctl reboot
 bindsym Ctrl+Shift+t exec systemctl poweroff
 bindsym Ctrl+Shift+0 exec --no-startup-id betterlockscreen -s dim
 bindsym Ctrl+Shift+l exec --no-startup-id betterlockscreen -l dim
+
 # print
 
 bindsym Print exec --no-startup-id spectacle -fbn
 bindsym Shift+Print exec --no-startup-id spectacle -rbn
+
+# ncmpcpp
+
+bindsym $mod+m exec urxvt -e ncmpcpp
+
+# search
+
+bindsym Mod1+q exec mate-search-tool --sortby=type
+
+# switch to headphones
+
+bindsym Ctrl+Shift+h exec --no-startup-id pacmd set-sink-port 0 analog-output-headphones 
+
+# redshift
+
+bindsym Ctrl+Mod1+r exec --no-startup-id redshift -O 3800K
+bindsym Ctrl+Mod1+d exec --no-startup-id redshift -x

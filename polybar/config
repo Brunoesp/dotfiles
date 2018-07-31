@@ -18,15 +18,16 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 32
+height = 35
 ;offset-x = 1%
 ;offset-y = 1%
 ;radius = 6.0
 fixed-center = false
 
+border-bottom = 0
 background = #282828 
 foreground = ${colors.foreground}
 
@@ -36,11 +37,11 @@ line-color = #f00
 border-size = 5
 border-color = #00000000
 
-padding-left = 1
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 
 font-0 = fixed:pixelsize=12;1
@@ -50,12 +51,12 @@ font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=12;1"
 
-modules-left = bspwm i3
-modules-center = mpd
+modules-left = bspwm i3 mpd
+modules-center = 
 modules-right = powermenu filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date 
 
 tray-position = right
-tray-padding = 2
+tray-padding = 0
 ;tray-transparent = true
 ;tray-background = #0063ff
 
@@ -72,7 +73,7 @@ tray-padding = 2
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
+enable-ipc = true
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
@@ -159,15 +160,14 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song>
+icon-prev = 
+icon-stop =  
+icon-play = 
+icon-pause = 
+icon-next = 
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
+label-song-maxlen = 75
 label-song-ellipsis = true
 
 [module/xbacklight]
@@ -215,7 +215,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%  %downspeed%  %upspeed%
+label-connected = %essid%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
