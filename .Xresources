@@ -13,7 +13,6 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 URxvt.scondaryWheel: 1
 URxvt.internalBorder: 30
-URxvt.borderColor: #282828
 
 URxvt.keysym.Control-Up: \033[1;5A
 URxvt.keysym.Control-Down: \033[1;5B
@@ -21,6 +20,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
 
 URxvt.background: #282828
+URxvt.borderColor: #282828
 Xcursor.theme: Capitaine
 rofi.modi: drun,run,window
 rofi.font: hack 15

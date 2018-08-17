@@ -12,6 +12,8 @@ for_window [class="^.*"] border pixel 0
 
 bindsym Ctrl+Mod1+g gaps inner current set 0; exec --no-startup-id polybar-msg cmd hide
 bindsym Ctrl+Shift+g gaps inner current set 15; exec --no-startup-id polybar-msg cmd show
+bindsym Ctrl+Mod1+f gaps inner current set 0
+bindsym Ctrl+Shift+f gaps inner current set 15
 # mpd
 
 exec --no-startup-id mpd
@@ -20,6 +22,10 @@ exec --no-startup-id mpd
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bindsym Ctrl+Mod1+h exec --no-startup-id polybar-msg cmd toggle
+
+# Notification
+
+exec --no-startup-id dunst
 
 # polkit
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
@@ -31,7 +37,8 @@ exec --no-startup-id blueman-applet
 
 # pywal
 
-exec --no-startup-id wal -q -i ~/Pictures/fft.jpg
+exec --no-startup-id wal -q -n --theme ~/.cache/wal/schemes/_home_brunoesp_Pictures_city_jpg_dark_None_None_1.1.0.json 
+exec --no-startup-id feh --bg-scale ~/Pictures/couple.jpg
 
 # Set colors from Xresources
 # Change 'color7' and 'color2' to whatever colors you want i3 to use 
@@ -41,19 +48,14 @@ exec --no-startup-id wal -q -i ~/Pictures/fft.jpg
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 
-# class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  '#74ed80'       $bg
-#client.focused_inactive $bg     $bg     $fg  $bg       $bg
-#client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
+# class                  border    backgr.   text       indicator child_border
+client.focused           $bg       $bg       "#282828"  $bg       $bg
+client.focused_inactive  "#a17ea8" "#a17ea8" "#282828"  $bg       $bg
+client.unfocused         "#cca0d3" "#cca0d3" "#ffffff"  $bg       $bg
+client.urgent            $bg       $bg       $fg        $bg       $bg
+client.placeholder       $bg       $bg       $fg        $bg       $bg
 
-client.background       $bg
-
-# PROTIP: You can also dynamically set dmenu's colors this way:
-#bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
-
-#
+client.background        $bg
 
 # compton
 exec --no-startup-id compton -b --inactive-dim 0.2 --backend=glx --xrender-sync --xrender-sync-fence --config ~/.config/compton.conf
@@ -67,7 +69,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -90,7 +92,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+d exec rofi -show run
 bindsym Mod1+Tab exec rofi -show window
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -253,11 +255,6 @@ bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
 bindsym Ctrl+Shift+w exec --no-startup-id pulseaudio-ctl up
 bindsym Ctrl+Shift+q exec --no-startup-id pulseaudio-ctl down
 
-# bluetooth
-#	turn on/connect
-bindsym Ctrl+Shift+b exec --no-startup-id "bluetoothctl power on && bluetoothctl connect F4:4E:FD:DC:A7:5B"
-bindsym Ctrl+Shift+o exec --no-startup-id "bluetoothctl disconnect F4:4E:FD:DC:A7:5B && bluetoothctl power off"
-
 # app shortcut
 
 bindsym Mod1+w exec firefox
@@ -274,8 +271,8 @@ bindsym Ctrl+Shift+l exec --no-startup-id betterlockscreen -l dim
 
 # print
 
-bindsym Print exec --no-startup-id spectacle -fbn
-bindsym Shift+Print exec --no-startup-id spectacle -rbn
+bindsym Print exec --no-startup-id sprint
+bindsym Shift+Print exec --no-startup-id sprint -s
 
 # ncmpcpp
 
@@ -283,7 +280,7 @@ bindsym $mod+m exec urxvt -e ncmpcpp
 
 # search
 
-bindsym Mod1+q exec mate-search-tool --sortby=type
+bindsym Mod1+q exec mate-search-tool --sortby=type --path=/media/data
 
 # switch to headphones
 
@@ -291,5 +288,17 @@ bindsym Ctrl+Shift+h exec --no-startup-id pacmd set-sink-port 0 analog-output-he
 
 # redshift
 
-bindsym Ctrl+Mod1+r exec --no-startup-id redshift -O 3800K
+bindsym Ctrl+Mod1+r exec --no-startup-id redshift -O 4000K
 bindsym Ctrl+Mod1+d exec --no-startup-id redshift -x
+
+# books
+
+bindsym Ctrl+Mod1+b exec --no-startup-id dbooks
+
+# mpv clipboard
+
+bindsym Ctrl+Mod1+m exec --no-startup-id "mpv $(xclip -o)"
+
+# youtube-viewer
+
+bindsym Ctrl+Mod1+y exec --no-startup-id urxvt -e youtube-viewer

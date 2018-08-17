@@ -1,0 +1,10 @@
+#!/bin/bash
+option=$1
+case $option in
+  "-s")
+    maim -q -s | tee ~/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png /tmp/temp_pic.png > /dev/null && xclip -selection clipboard -t image/png -i /tmp/temp_pic.png
+    ;;
+     *)
+    maim -q | tee ~/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png /tmp/temp_pic.png > /dev/null && xclip -selection clipboard -t image/png -i /tmp/temp_pic.png
+    ;;
+esac

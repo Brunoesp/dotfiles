@@ -6,4 +6,4 @@ select=$(echo "$books" | rofi -dmenu -i -p "Select file")
 [ "$select" = "" ] && exit 1
 fullpath=$(find /media/data/documents/Undergraduate -name "$select" | head -n 1)
 [ "$fullpath" = "" ] && exit 1
-evince "$fullpath"
+okular "$fullpath"

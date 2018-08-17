@@ -15,14 +15,10 @@ set incsearch
 set ignorecase
 set smartcase
 
-call plug#begin('~/Documents/vim/plugins')
-
-Plug 'dylanaraps/wal.vim'
-
-call plug#end()
-
 "colorscheme wal
-
-colorscheme onedark
-
+"call plug#begin('~/Documents/vim/plugins')
+"Plug 'dylanaraps/wal.vim'
+"call plug#end()
+"colorscheme onedark
 "hi Normal guibg=NONE ctermbg=NONE
+
