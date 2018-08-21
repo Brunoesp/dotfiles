@@ -37,8 +37,9 @@ exec --no-startup-id blueman-applet
 
 # pywal
 
-exec --no-startup-id wal -q -n --theme ~/.cache/wal/schemes/_home_brunoesp_Pictures_city_jpg_dark_None_None_1.1.0.json 
-exec --no-startup-id feh --bg-scale ~/Pictures/couple.jpg
+#exec --no-startup-id wal -q -n --theme ~/.cache/wal/schemes/_home_brunoesp_Pictures_city_jpg_dark_None_None_1.1.0.json 
+#exec --no-startup-id feh --bg-scale ~/Pictures/dreamer.jpg
+exec --no-startup-id wal -i ~/Pictures/animegirl.jpg
 
 # Set colors from Xresources
 # Change 'color7' and 'color2' to whatever colors you want i3 to use 
@@ -232,6 +233,7 @@ bindsym $mod+r mode "resize"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -set 80%
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -set 1%
 
 # media
