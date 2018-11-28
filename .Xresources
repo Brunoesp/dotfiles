@@ -1,9 +1,9 @@
-URxvt.letterSpace: -1
+URxvt.letterSpace: 0
 URxvt.lineSpace: 2
-;URxvt.transparent: 1
-;URxvt.shading: 30
-;URxvt.blurRadius: 12
-URxvt.font: xft:SourceCodePro-Regular:size=16
+!URxvt.transparent: 1
+!URxvt.shading: 30
+!URxvt.blurRadius: 12
+URxvt.font: xft:Inconsolata-Regular:size=18
 URxvt.scrollBar: false
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -18,8 +18,10 @@ URxvt.keysym.Control-Up: \033[1;5A
 URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
-URxvt.background: #2d3138
-URxvt.borderColor: #2d3138
+!URxvt.background: #2d3138
+!URxvt.borderColor: #2d3138
+URxvt.background: #282828
+URxvt.borderColor: #282828
 URxvt.perl-ext-common: font-size
 
 Xcursor.theme: Capitaine
