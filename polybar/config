@@ -28,7 +28,7 @@ height = 35
 fixed-center = false
 
 border-bottom-size = 0
-background = #cc000000 
+background = #202020
 foreground = ${colors.foreground}
 
 line-size = 2
@@ -50,10 +50,11 @@ font-2 = Awesome:pixelsize=12;1
 font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=12;1"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=12;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=12;1"
+font-6 = "SourceHanSansJP-Light:size=12:antialias=false;0"
 
 modules-left = i3 mpd
 modules-center = 
-modules-right = powermenu filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date 
+modules-right = filesystem xbacklight volume memory cpu wlan eth battery temperature date 
 
 tray-position = right
 tray-padding = 0
@@ -93,7 +94,7 @@ label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = "#282828"
+label-indicator-background = "#cc000000"
 ;${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
