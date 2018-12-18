@@ -16,7 +16,7 @@ cp $HOME/.Xresources $DOTFILES
 cp $HOME/.xinitrc $DOTFILES
 
 cd $DOTFILES
-git add *
+git add .
 git commit -m "dotfiles update"
 git push origin master
 cd -
