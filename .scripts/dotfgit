@@ -1,0 +1,22 @@
+#!/bin/sh
+
+DOTFILES="$HOME/Documents/dotfiles"
+
+cp $HOME/.config/i3/config $DOTFILES/.config/i3/
+cp $HOME/.config/polybar/config $DOTFILES/.config/polybar/
+cp $HOME/.config/dunst/dunstrc $DOTFILES/.config/dunst/
+cp $HOME/.config/ranger/rc.conf $DOTFILES/.config/ranger/
+cp $HOME/.config/mpd/mpd.conf $DOTFILES/.config/mpd/
+cp $HOME/.ncmpcpp/config $DOTFILES/.ncmpcpp/
+cp $HOME/.scripts/* $DOTFILES/.scripts/
+cp $HOME/.bashrc $DOTFILES
+cp $HOME/.bash_profile $DOTFILES
+cp $HOME/.vimrc $DOTFILES
+cp $HOME/.Xresources $DOTFILES
+cp $HOME/.xinitrc $DOTFILES
+
+cd $DOTFILES
+git add *
+git commit -m "dotfiles update"
+git push origin master
+cd -

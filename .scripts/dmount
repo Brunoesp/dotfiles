@@ -1,0 +1,19 @@
+#!/bin/sh
+
+mountable=$(lsblk -lpo name,type,size,mountpoint | awk '{if($2 == "part" && $4 == "") print $1, "(" $3 ")"}')
+[ "$mountable" = "" ] && exit 1
+lines=$(echo "$mountable" | wc -l)
+chosen=$(echo "$mountable" | rofi -dmenu -lines $lines -i -p "Device to mount" | awk '{print $1}')
+[ "$chosen" = "" ] && exit 1
+dirs=$(find /media -maxdepth 1 -type d -empty 2>/dev/null)
+lines=$(echo "$dirs" | wc -l)
+mountpoint=$(echo "$dirs" | rofi -dmenu -lines $lines -i -filter "/media/" -p "Select mountpoint")
+[ "$mountpoint" = "" ] && exit 1
+if [ ! -d "$mountpoint" ]; then
+  mkdir=$(echo -e "No\nYes" | rofi -dmenu -lines 2 -i -p "Create mountpoint?")
+  [ "$mkdir" = "Yes" ] && pkexec --user root mkdir -p "$mountpoint" || exit 1
+fi
+ismp=$(lsblk -lpo mountpoint | grep "$mountpoint$")
+[ "$ismp" != "" ] && notify-send -u critical dmount "Directory is a mountpoint. Unable to mount." && exit 1
+pkexec --user root mount $chosen $mountpoint && notify-send -u normal dmount "$chosen mounted on $mountpoint" || notify-send -u critical dmount "Could not mount"
+

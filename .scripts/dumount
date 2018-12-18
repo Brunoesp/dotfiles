@@ -1,0 +1,11 @@
+#!/bin/sh
+
+mounted=$(lsblk -lpo name,type,mountpoint | awk '{if($3 != "" && $3 ~ /media/ && $2 == "part") print $1, "(" $3 ")"}')
+[ "$mounted" = "" ] && exit 1
+lines=$(echo "$mounted" | wc -l)
+chosen=$(echo "$mounted" | rofi -dmenu -lines $lines -i -p "Device to unmount")
+device=$(echo "$chosen" | awk '{print substr($2,2,length($2)-2)}')
+chosen=$(echo "$chosen" | awk '{print $1}')
+[ "$chosen" = "" ] && exit 1
+shouldumount=$(echo -e "No\nYes" | rofi -dmenu -lines 2 -i -p "Unmount $chosen?")
+[ "$shouldumount" = "Yes" ] && pkexec --user root umount -R $device && notify-send -u normal dumount "$device sucessfuly unmounted from $chosen." || notify-send -u critical dumount "Could not unmount $device"

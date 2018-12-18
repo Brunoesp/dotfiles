@@ -1,0 +1,22 @@
+#!/bin/sh
+
+ssid=$1
+passwd=$2
+
+if [ "$ssid" = "" ]; then
+  ssid=$(nmcli --fields SSID,SIGNAL,BARS device wifi list --rescan yes | rofi -dmenu -p "Choose a network to connect" | awk '{print $1}')
+  passwd=$(rofi -dmenu -lines 1 -p "Type $ssid password")
+  if [ "$passwd" != "" ]; then 
+    notify-send Network "$(nmcli device wifi connect $ssid password $passwd)"
+  fi
+else
+  if [ "$passwd" != "" ]; then
+    nmcli device wifi rescan
+    notify-send Network "$(nmcli device wifi connect $ssid password $passwd)"
+  else
+    passwd=$(rofi -dmenu -lines 1 -p "Type $ssid password")
+    nmcli device wifi rescan
+    notify-send Network "$(nmcli device wifi connect $ssid password $passwd)"
+  fi
+fi
+
