@@ -32,7 +32,6 @@ elif [ $ACTION = "dec" ]; then
   fi
 elif [ $ACTION = "set" ]; then
   if [ "$PERCENTAGE" = "" ]; then
-    xbacklight -set 50
     CURRENT=$(get_current)
     notify
   else

@@ -52,7 +52,7 @@ font-6 = "SourceHanSansJP-Light:size=12:antialias=false;0"
 
 modules-left = i3 mpd
 modules-center = 
-modules-right = filesystem xbacklight memory cpu wlan eth battery temperature date 
+modules-right = filesystem memory cpu wlan eth battery temperature date 
 
 tray-position = right
 tray-padding = 0
