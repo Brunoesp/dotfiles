@@ -52,7 +52,7 @@ font-6 = "SourceHanSansJP-Light:size=12:antialias=false;0"
 
 modules-left = i3 mpd
 modules-center = 
-modules-right = filesystem cpu memory temperature wlan eth battery date 
+modules-right = filesystem cpu memory temperature xbacklight volume wlan eth battery date 
 
 tray-position = right
 tray-padding = 0
@@ -101,9 +101,11 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-1 = /media/data
 
-;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-mounted =  %percentage_used%%
+format-mounted-underline = #4bffdc
+format-unmounted-underline = #9f78e1
+label-mounted =  %mountpoint% %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -178,8 +180,9 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = 
+format = <label>
+format-underline = #0a6cf5
+label =  %percentage%%
 
 bar-width = 10
 bar-indicator = |
@@ -268,32 +271,16 @@ format-underline = #0a6cf5
 label =%date% %time%
 
 [module/volume]
-type = internal/volume
+type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = 
+format-volume = <label-volume>
+label-volume =  %percentage%%
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
+format-volume-underline = #ffb52a
 label-muted = 
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
