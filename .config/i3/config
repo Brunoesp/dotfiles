@@ -61,10 +61,10 @@ bindsym Ctrl+Shift+e exec --no-startup-id "mpc stop"
  
 # brightness
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -set 100%
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -set 1%
+bindsym XF86MonBrightnessUp exec --no-startup-id brightctl inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id brightctl dec 10
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightctl set 100
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightctl set 1
 
 # print
 

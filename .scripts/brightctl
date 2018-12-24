@@ -1,0 +1,47 @@
+#!/bin/sh
+
+ACTION=$1
+PERCENTAGE=$2
+
+notify() {
+  notify-send -t 1000 Brightness "$CURRENT%"
+}
+get_current() {
+  printf %.0f\\n "$(xbacklight -get)"
+}
+
+if [ $ACTION = "inc" ]; then
+  if [ "$PERCENTAGE" = "" ]; then
+    xbacklight -inc 10
+    CURRENT=$(get_current)
+    notify
+      else
+    xbacklight -inc $PERCENTAGE
+    CURRENT=$(get_current)
+    notify
+  fi
+elif [ $ACTION = "dec" ]; then
+  if [ "$PERCENTAGE" = "" ]; then
+    xbacklight -dec 10
+    CURRENT=$(get_current)
+    notify
+  else
+    xbacklight -dec $PERCENTAGE
+    CURRENT=$(get_current)
+    notify
+  fi
+elif [ $ACTION = "set" ]; then
+  if [ "$PERCENTAGE" = "" ]; then
+    xbacklight -set 50
+    CURRENT=$(get_current)
+    notify
+  else
+    xbacklight -set $PERCENTAGE
+    CURRENT=$(get_current)
+    notify
+  fi
+else
+  echo Unkown parameter
+  return 1
+fi
+
