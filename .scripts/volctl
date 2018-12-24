@@ -1,0 +1,12 @@
+#!/bin/sh
+
+STATUS=$(pulseaudio-ctl full-status)
+VOL=$(echo $STATUS | awk '{print $1}')
+MUTED=$(echo $STATUS | awk '{print $2}')
+
+if [ $MUTED = "yes" ]; then
+  dunstify -r 421 -t 1000 Volume "Muted"
+else
+  dunstify -r 421 -t 1000 Volume "$VOL%"
+fi
+
