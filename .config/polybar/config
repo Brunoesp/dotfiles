@@ -52,7 +52,7 @@ font-6 = "SourceHanSansJP-Light:size=12:antialias=false;0"
 
 modules-left = i3 mpd
 modules-center = 
-modules-right = filesystem memory cpu wlan eth battery temperature date 
+modules-right = filesystem cpu memory temperature wlan eth battery date 
 
 tray-position = right
 tray-padding = 0
@@ -162,7 +162,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <toggle> <label-song>
+format-online =   <label-song>
+format-paused =   <label-song>
+format-stopped = 
 icon-prev = 
 icon-stop =  
 icon-play = 

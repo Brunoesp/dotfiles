@@ -4,7 +4,7 @@ ACTION=$1
 PERCENTAGE=$2
 
 notify() {
-  notify-send -t 1000 Brightness "$CURRENT%"
+  dunstify -r 420 -t 1000 Brightness "$CURRENT%"
 }
 get_current() {
   printf %.0f\\n "$(xbacklight -get)"
