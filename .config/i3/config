@@ -71,7 +71,7 @@ bindsym Ctrl+Shift+XF86MonBrightnessUp exec --no-startup-id brightctl set $(rofi
 
 bindsym Print exec --no-startup-id sprint
 bindsym Shift+Print exec --no-startup-id sprint -s
-
+bindsym Mod4+Print exec --no-startup-id sprint -i
 # redshift
 
 bindsym Ctrl+Mod1+r exec --no-startup-id redshift -O 4500K
