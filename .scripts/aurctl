@@ -17,7 +17,7 @@ elif [ $DOWNLOAD = "-U" ]; then
   COWER=$(cower -u | awk '{print $2}')
   if [ "$PROGRAM" = "" ]; then
     if [ "$COWER" = "" ]; then
-      echo All packages up to date.
+      echo All packages are up to date.
     else
       echo Updatable packages: 
       echo $COWER | tr " " "\n"
