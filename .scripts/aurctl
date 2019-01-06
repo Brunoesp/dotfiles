@@ -16,7 +16,8 @@ if [ $DOWNLOAD = "-S" ]; then
 elif [ $DOWNLOAD = "-U" ]; then
   if [ "$PROGRAM" = "" ]; then
     COWER=$(cower -u | awk '{print $2}')
-    echo Updatable packages: $COWER
+    echo Updatable packages: 
+    echo $COWER | tr " " "\n"
     echo Start update? [y/n] | tr "\n" " "
     read
     if [ "$REPLY" = "y" ]; then
