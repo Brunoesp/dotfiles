@@ -14,8 +14,8 @@ if [ $DOWNLOAD = "-S" ]; then
     echo Package not found.
   fi
 elif [ $DOWNLOAD = "-U" ]; then
+  COWER=$(cower -u | awk '{print $2}')
   if [ "$PROGRAM" = "" ]; then
-    COWER=$(cower -u | awk '{print $2}')
     if [ "$COWER" = "" ]; then
       echo All packages up to date.
     else
@@ -32,7 +32,11 @@ elif [ $DOWNLOAD = "-U" ]; then
       fi
     fi
   else
-    aurctl -S $PROGRAM;
+    if [ "$COWER" = "" ]; then
+      echo Package not installed. Use -S instead.
+    else
+      aurctl -S $PROGRAM;
+    fi
   fi
 else
   echo Unknown parameter.
