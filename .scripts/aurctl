@@ -16,16 +16,20 @@ if [ $DOWNLOAD = "-S" ]; then
 elif [ $DOWNLOAD = "-U" ]; then
   if [ "$PROGRAM" = "" ]; then
     COWER=$(cower -u | awk '{print $2}')
-    echo Updatable packages: 
-    echo $COWER | tr " " "\n"
-    echo Start update? [y/n] | tr "\n" " "
-    read
-    if [ "$REPLY" = "y" ]; then
-      for i in $COWER; do
-        aurctl -S $i;
-      done
+    if [ "$COWER" = "" ]; then
+      echo All packages up to date.
     else
-      echo Operation canceled.
+      echo Updatable packages: 
+      echo $COWER | tr " " "\n"
+      echo Start update? [y/n] | tr "\n" " "
+      read
+      if [ "$REPLY" = "y" ]; then
+        for i in $COWER; do
+          aurctl -S $i;
+        done
+      else
+        echo Operation canceled.
+      fi
     fi
   else
     aurctl -S $PROGRAM;
