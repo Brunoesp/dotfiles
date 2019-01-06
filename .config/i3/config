@@ -37,7 +37,7 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 # wallpaper
 
-exec --no-startup-id feh --bg-scale $HOME/Pictures/totoro.jpg
+exec --no-startup-id wal --saturate 0.8 -i $HOME/Pictures/fft.jpg
 
 # pulseaudio
 #	XF86
@@ -88,11 +88,17 @@ bindsym Ctrl+Shift+0 exec betterlockscreen -s dim
 bindsym Ctrl+Shift+l exec betterlockscreen -l dim
 
 # launchers
-bindsym Mod1+e exec urxvt -e ranger
+bindsym Mod1+e exec $term -e ranger
 bindsym Mod1+w exec google-chrome-stable
 bindsym Mod1+Shift+e exec dolphin
-bindsym $mod+m exec urxvt -e ncmpcpp
+bindsym $mod+m exec $term -name ncmpcpp -e ncmpcpp
 bindsym Ctrl+Mod1+b exec dbooks
+
+# open ncmpcpp on workspace 1
+assign [class="^URxvt$" instance="^ncmpcpp$"] $ws1
+
+# open spotify on workspace 1
+for_window [class="Spotify"] move to workspace $ws1
 
 
 
@@ -101,6 +107,7 @@ bindsym Ctrl+Mod1+b exec dbooks
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $term urxvt
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -121,7 +128,7 @@ font pango:Hack 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill

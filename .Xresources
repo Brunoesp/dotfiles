@@ -7,7 +7,7 @@
 
 URxvt.letterSpace: 0
 URxvt.lineSpace: 2
-URxvt.font: xft:Inconsolata-Regular:size=18
+URxvt.font: xft:NotoSansMono:size=15
 URxvt.scrollBar: false
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -15,15 +15,15 @@ URxvt.cursorColor: #ff5f00
 URxvt.scrollstyle: plain
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
-URxvt.scondaryWheel: 1
+!URxvt.secondaryWheel: 1
 URxvt.internalBorder: 30
 URxvt.keysym.Control-Up: \033[1;5A
 URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
-URxvt.background: #282828
-URxvt.borderColor: #282828
-URxvt.perl-ext-common: font-size
+URxvt.background: #242424
+URxvt.borderColor: #242424
+URxvt.perl-ext-common: font-size,vtwheel
 
 Xcursor.theme: Capitaine
 
