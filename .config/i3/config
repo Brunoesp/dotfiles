@@ -9,11 +9,12 @@
 # i3-gaps
 #	Basic
 for_window [class="^.*"] border pixel 3
-gaps inner 10
-gaps outer 5
+#gaps inner 10
+#gaps outer 5
 #	Dynamic Gaps Switch
-bindsym Ctrl+Mod1+f gaps inner current set 0; gaps outer current set 0
-bindsym Ctrl+Shift+f gaps inner current set 10; gaps outer current set 5
+bindsym Ctrl+Shift+f gaps inner current set 0; gaps outer current set 0
+bindsym Ctrl+Mod1+f gaps inner current set 10; gaps outer current set 5
+bindsym Mod1+f exec --no-startup-id polybar-msg cmd toggle
 
 # polybar
 
@@ -37,7 +38,7 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 # wallpaper
 
-exec --no-startup-id wal --saturate 0.8 -i $HOME/Pictures/fft.jpg
+exec --no-startup-id feh --bg-scale $HOME/Pictures/totoro.jpg
 
 # pulseaudio
 #	XF86
@@ -93,6 +94,7 @@ bindsym Mod1+w exec google-chrome-stable
 bindsym Mod1+Shift+e exec dolphin
 bindsym $mod+m exec $term -name ncmpcpp -e ncmpcpp
 bindsym Ctrl+Mod1+b exec dbooks
+bindsym Mod1+p exec $term -e ranger $HOME/Documents/Productivity
 
 # open ncmpcpp on workspace 1
 assign [class="^URxvt$" instance="^ncmpcpp$"] $ws1
