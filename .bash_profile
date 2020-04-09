@@ -7,11 +7,13 @@
 
 
 export EDITOR="vim"
-export TERMINAL="urxvt"
-export BROWSER="firefox"
+export TERMINAL="kitty"
+export BROWSER="google-chrome-stable"
 export READER="zathura"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
-export PATH="$HOME/.scripts/:${PATH}"
+export PATH="$HOME/.scripts:${PATH}"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

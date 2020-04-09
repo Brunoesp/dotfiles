@@ -5,9 +5,9 @@ SUCCESS=0
 if [ $DOWNLOAD = "-S" ]; then
   wget -q https://aur.archlinux.org/cgit/aur.git/snapshot/$PROGRAM.tar.gz && SUCCESS=1 || SUCCESS=0
   if [ $SUCCESS -eq 1 ]; then
-    mv $PROGRAM.tar.gz ~/Documents/programs/
-    cd ~/Documents/programs/
-    tar -xf ~/Documents/programs/$PROGRAM.tar.gz
+    mv $PROGRAM.tar.gz ~/Documents/Programs/
+    cd ~/Documents/Programs/
+    tar -xf ~/Documents/Programs/$PROGRAM.tar.gz
     cd $PROGRAM
     makepkg -si
   else

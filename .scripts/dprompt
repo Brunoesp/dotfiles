@@ -9,10 +9,10 @@ case $option in
     systemctl reboot
     ;;
   "Suspend")
-    betterlockscreen -s dim
+    systemctl suspend
     ;;
   "Lock")
-    betterlockscreen -l dim
+    lock-cmd
     ;;
   *)
     exit

@@ -8,21 +8,27 @@
 
 # i3-gaps
 #	Basic
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 #gaps inner 10
 #gaps outer 5
 #	Dynamic Gaps Switch
-bindsym Ctrl+Shift+f gaps inner current set 0; gaps outer current set 0
-bindsym Ctrl+Mod1+f gaps inner current set 10; gaps outer current set 5
+bindsym Ctrl+Shift+f gaps inner current set 10; gaps outer current set 5
+bindsym Ctrl+Mod1+f gaps inner current set 0; gaps outer current set 0
 bindsym Mod1+f exec --no-startup-id polybar-msg cmd toggle
+
+# login
+
+exec --no-startup-id lock-cmd
+exec --no-startup-id setxkbmap br
+exec_always --no-startup-id xinput set-prop 13 322 1; xinput set-prop 13 306 1; xinput set-prop 13 335 1; xinput set-prop 13 321 0
 
 # polybar
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# compton
+# picom
 
-exec --no-startup-id compton -b --xrender-sync --xrender-sync-fence --config ~/.config/compton.conf
+exec --no-startup-id picom -b
 
 # mpd
 
@@ -38,7 +44,7 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 # wallpaper
 
-exec --no-startup-id feh --bg-scale $HOME/Pictures/totoro.jpg
+exec --no-startup-id feh --bg-scale $HOME/Pictures/aenami-1.jpg
 
 # pulseaudio
 #	XF86
@@ -92,16 +98,9 @@ bindsym Ctrl+Shift+l exec betterlockscreen -l dim
 bindsym Mod1+e exec $term -e ranger
 bindsym Mod1+w exec google-chrome-stable
 bindsym Mod1+Shift+e exec dolphin
-bindsym $mod+m exec $term -name ncmpcpp -e ncmpcpp
+bindsym $mod+m exec $term -e ncmpcpp
 bindsym Ctrl+Mod1+b exec dbooks
 bindsym Mod1+p exec $term -e ranger $HOME/Documents/Productivity
-
-# open ncmpcpp on workspace 1
-assign [class="^URxvt$" instance="^ncmpcpp$"] $ws1
-
-# open spotify on workspace 1
-for_window [class="Spotify"] move to workspace $ws1
-
 
 
 # i3 config file (v4)
@@ -109,7 +108,7 @@ for_window [class="Spotify"] move to workspace $ws1
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $term urxvt
+set $term kitty
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -136,7 +135,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run -lines 10
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -264,11 +263,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #282828 #282828 #ffffff #eeeeee   #888888
-client.focused_inactive #282828 #282828 #ffffff #282828   #282828
-client.unfocused        #282828 #202020 #888888 #282828   #282828
-client.urgent           #282828 #202020 #ffffff #282828   #282828
-client.placeholder      #282828 #202020 #ffffff #282828   #282828
+client.focused          #282828 #414f61 #ffffff #91a8bf   #748699
+client.focused_inactive #282828 #282828 #ffffff #414f61   #414f61
+client.unfocused        #282828 #202020 #888888 #282828   #414f61
+client.urgent           #282828 #202020 #ffffff #282828   #414f61
+client.placeholder      #282828 #202020 #ffffff #282828   #414f61
 
 client.background       #ffffff
 
