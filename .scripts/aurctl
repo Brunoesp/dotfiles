@@ -17,6 +17,7 @@ if [ $DOWNLOAD = "-S" ]; then
     echo Package not found.
   fi
 elif [ $DOWNLOAD = "-U" ]; then
+  mkdir -p /tmp/aurctl
   getupdates 
   UPDATE=$(cat /tmp/aurctl/updatable)
   if [ "$UPDATE" = "" ]; then
