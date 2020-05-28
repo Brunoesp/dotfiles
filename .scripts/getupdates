@@ -1,0 +1,31 @@
+#!/bin/bash
+AUR=$(pacman -Qm | awk '{print $1}')
+NUM=0
+
+rm /tmp/aurctl/*
+
+pacman -Qm > /tmp/aurctl/current
+
+for i in $AUR
+do 
+  wget -q -O /tmp/aurctl/$i https://aur.archlinux.org/packages/$i/ &
+  pids[$NUM]=$!
+  NUM=$[$NUM + 1]
+done
+
+> /tmp/aurctl/new
+
+for pid in ${pids[*]}
+do
+  wait $pid
+done
+
+for i in $AUR
+do 
+  grep "<h2>Package Details" /tmp/aurctl/$i | awk '{print $3" "$4}' | sed 's/<\/h2>//' >> /tmp/aurctl/new
+done
+
+for i in $AUR
+do
+  cat /tmp/aurctl/current /tmp/aurctl/new | sort | uniq -u | awk '{print $1}' | uniq > /tmp/aurctl/updatable
+done

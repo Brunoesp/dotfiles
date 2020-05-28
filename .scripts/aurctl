@@ -10,35 +10,33 @@ if [ $DOWNLOAD = "-S" ]; then
     tar -xf ~/Documents/Programs/$PROGRAM.tar.gz
     cd $PROGRAM
     makepkg -si
+    cd ..
+    rm $PROGRAM.tar.gz
+    rm -r $PROGRAM
   else
     echo Package not found.
   fi
 elif [ $DOWNLOAD = "-U" ]; then
-  COWER=$(cower -u | awk '{print $2}')
-  if [ "$PROGRAM" = "" ]; then
-    if [ "$COWER" = "" ]; then
-      echo All packages are up to date.
-    else
-      echo Updatable packages: 
-      echo $COWER | tr " " "\n"
-      echo Start update? [y/n] | tr "\n" " "
-      read
-      if [ "$REPLY" = "y" ]; then
-        for i in $COWER; do
-          aurctl -S $i;
-        done
-      else
-        echo Operation canceled.
-      fi
-    fi
+  getupdates 
+  UPDATE=$(cat /tmp/aurctl/updatable)
+  if [ "$UPDATE" = "" ]; then
+    echo All packages are up to date.
   else
-    if [ "$COWER" = "" ]; then
-      echo Package not installed. Use -S instead.
+    echo Updatable packages:
+    echo $UPDATE | tr ' ' '\n'
+    echo Start update? [y/n]
+    read
+    if [ "$REPLY" = "y" ]
+    then
+      for i in $UPDATE
+      do
+        aurctl -S $i
+      done
     else
-      aurctl -S $PROGRAM;
+      echo No packages updated.
     fi
   fi
+  rm -r /tmp/aurctl
 else
   echo Unknown parameter.
 fi
-
