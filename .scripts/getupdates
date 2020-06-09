@@ -2,6 +2,9 @@
 AUR=$(pacman -Qm | awk '{print $1}')
 NUM=0
 
+mkdir -p /tmp/aurctl
+rm -f /tmp/aurctl/*
+
 pacman -Qm > /tmp/aurctl/current
 
 for i in $AUR
@@ -10,6 +13,8 @@ do
   pids[$NUM]=$!
   NUM=$[$NUM + 1]
 done
+
+> /tmp/aurctl/new
 
 for pid in ${pids[*]}
 do
